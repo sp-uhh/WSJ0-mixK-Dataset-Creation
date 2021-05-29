@@ -61,7 +61,7 @@ def get_max_amplitude(mix, utterances):
     return max_amplitude
 
 
-def create_wsj0_mix_n_split_csv(wsj_root, csv_path, n_speakers, split, random_seed=0):
+def create_wsj0_mix_k_split_csv(wsj_root, csv_path, n_speakers, split, random_seed=0):
     random.seed(random_seed)
     np.random.seed(random_seed)
 
@@ -87,9 +87,9 @@ def create_wsj0_mix_n_split_csv(wsj_root, csv_path, n_speakers, split, random_se
     rows = []
     for i_mix in range(n_mixtures):
         amp_values_db = np.random.rand(n_speakers) * 10.0 - 5.0
-        if n_speakers % 2 == 0:  # n even
+        if n_speakers % 2 == 0:  # k even
             amp_values_db[1] = amp_values_db[0] * -1.0
-        elif n_speakers % 2 == 1 and n_speakers > 1:  # n odd and n > 1
+        elif n_speakers % 2 == 1 and n_speakers > 1:  # k odd and k > 1
             amp_values_db[0] = 0.0
             amp_values_db[2] = amp_values_db[1] * -1.0
 
@@ -155,7 +155,7 @@ def main(wsj0_root, output_root, n_speakers, sr_str='8k', data_length='min'):
         os.makedirs(csv_path)
 
     for split in ['tr', 'cv', 'tt']:
-        create_wsj0_mix_n_split_csv(wsj0_root, csv_path, n_speakers, split)
+        create_wsj0_mix_k_split_csv(wsj0_root, csv_path, n_speakers, split)
 
     if sr_str == 'both':
         sr_options = [8000, 16000]
@@ -238,11 +238,11 @@ def main(wsj0_root, output_root, n_speakers, sr_str='8k', data_length='min'):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--output-dir', type=str, help='Output directory for writing wsj0-mix-n 8 kHz and 16 kHz datasets')
+    parser.add_argument('--output-dir', type=str, help='Output directory for writing WSJ0-mix-k 8 kHz and 16 kHz datasets')
     parser.add_argument('--wsj0-root', type=str, help='Path to the folder containing wsj0/')
     parser.add_argument('--sr-str', type=str, help='The target sample rate of the created wav files. Choose one: 8k / 16k / both')
     parser.add_argument('--data-length', type=str,
                         help='Whether to use the maximum or minimum length of the selected utterances. Choose one: min / max / both')
-    parser.add_argument('--n', type=int, help='Number of speakers to mix in each mixture')
+    parser.add_argument('--k', type=int, help='Number of speakers to mix in each mixture')
     args = parser.parse_args()
-    main(args.wsj0_root, args.output_dir, args.n, args.sr_str, args.data_length)
+    main(args.wsj0_root, args.output_dir, args.k, args.sr_str, args.data_length)

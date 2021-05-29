@@ -34,7 +34,7 @@ In order to obtain the full WSJ0-mixK dataset that consists of K many WSJ0-mix-k
     
     
 - Run the script in a command line: 
-    `python3 create_wsj0_mix_k_dataset.py --output-dir=../path/to/dir/of/choice --wsj0-root=/path/to/wsj0/ --sr-str=8k --data-length=min --k=2`
+    `python3 create_wsj0_mix_k_subset.py --output-dir=../path/to/dir/of/choice --wsj0-root=/path/to/wsj0/ --sr-str=8k --data-length=min --k=2`
   
 
 ## 4- References
