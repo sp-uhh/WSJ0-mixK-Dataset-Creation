@@ -10,7 +10,7 @@ neural networks on speaker count agnostic speech separation with an unknown numb
 
 This work aims to extend the WSJ0-mix2 and WSJ0-mix3 datasets proposed in [1] for an arbitrary number of speakers.
 The provided Python script can be used to generate a WSJ0-mix-k dataset of mixtures with k simultaneous speakers according to the method proposed in [1].
-In order to obtain the full WSJ0-mixK dataset that consists of K many WSJ0-mix-k subsets (k in {1, 2, ..., K}), the provided script has to be run for each k in {1, 2, ..., K} with the argument --k set accordingly. The Python code is an adaption of the scripts provided by [2] and is used to generate the dataset employed in [3] that consists of four WSJ0-mix-k subsets with k in {1,2,3,4}, i.e. K=4.
+In order to obtain the full WSJ0-mixK dataset that consists of K many WSJ0-mix-k subsets (k in {1, 2, ..., K}), the provided script has to be run for each k in {1, 2, ..., K} with the argument --k set accordingly. The Python code is an adaption of the scripts provided by [2] and is used to generate the dataset employed in [3] that consists of four WSJ0-mix-k subsets with k in {1, 2, 3, 4}, i.e. K=4.
 
 ## 2- Requirements
 
